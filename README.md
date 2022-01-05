@@ -1,0 +1,1 @@
+# miniextensions-coding-challenge
