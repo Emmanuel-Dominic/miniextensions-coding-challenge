@@ -1,15 +1,17 @@
 import React from 'react';
 import './App.css';
 import Home from "./components/Home";
-import { ApiProvider } from "@reduxjs/toolkit/query/react";
-import { usersApi } from "./redux/store";
+import { QueryClientProvider, QueryClient } from "react-query";
+import { ReactQueryDevtools } from "react-query/devtools";
 
+const queryClient = new QueryClient();
 
 const App = () => {
   return (
-    <ApiProvider api={usersApi}>
+    <QueryClientProvider client={queryClient}>
       <Home/>
-    </ApiProvider>
+      <ReactQueryDevtools />
+    </QueryClientProvider>
     );
 }
 

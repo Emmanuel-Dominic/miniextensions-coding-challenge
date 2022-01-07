@@ -1,11 +1,15 @@
 import React, { useRef, useState, useCallback, SyntheticEvent } from 'react';
-import { useGetUsersQuery } from "./../redux/store";
+import { useQuery } from "react-query";
+import { getUsers } from "./../lib/api";
+import { User } from "./../lib/constants";
 
 
 const Home = () => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [filter, setFilter] = useState("");
-    const { data: users } = useGetUsersQuery();
+    const { data: users } = useQuery<User[]>("users", getUsers, {
+        initialData: [],
+    });
     const textRef = useRef<HTMLInputElement>(null);
 
     const handleLogin = useCallback(
