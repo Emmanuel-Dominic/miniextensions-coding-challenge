@@ -1,5 +1,8 @@
-import { User }  from "./constants";
+import axios from "axios";
+import { User } from "./constants";
 
-export const BASE_URL = "https://jsonplaceholder.typicode.com";
+export const axiosClient = axios.create({
+    baseURL: "https://jsonplaceholder.typicode.com",
+});
 
-export const getUsers = async (): Promise<User[]> => fetch(`${BASE_URL}/users`).then((res) => res.json());
+export const getUsers = async () => (await axiosClient.get<User[]>("/users")).data;
