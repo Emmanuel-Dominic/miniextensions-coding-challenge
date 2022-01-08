@@ -1,5 +1,5 @@
 import React, { useRef, useState, useCallback, SyntheticEvent } from 'react';
-import { useGetUsersQuery } from "./../redux/store";
+import { useGetUsersQuery } from "./../redux/actions";
 
 
 const Home = () => {

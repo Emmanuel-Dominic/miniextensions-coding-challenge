@@ -1,21 +1,14 @@
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { User } from "./actionTypes";
+import { configureStore } from "@reduxjs/toolkit";
+import { setupListeners } from "@reduxjs/toolkit/query";
+import { usersApi } from './actions';
 
-export const usersApi = createApi({
-    reducerPath: "users",
-    baseQuery: fetchBaseQuery({
-        baseUrl: "https://jsonplaceholder.typicode.com",
-    }),
-    tagTypes: ["Users"],
-    endpoints: (builder) => ({
-        getUsers: builder.query<User[], void>({
-            query: () => "/users",
-            providesTags: [{
-                type: "Users",
-                id: "LIST"
-            }],
-        }),
-    })
-})
 
-export const { useGetUsersQuery } = usersApi;
+export const store = configureStore({
+  reducer: {
+    [usersApi.reducerPath]: usersApi.reducer,
+  },
+  middleware: getDefaultMiddleware =>
+    getDefaultMiddleware().concat(usersApi.middleware),
+});
+
+ setupListeners(store.dispatch);
