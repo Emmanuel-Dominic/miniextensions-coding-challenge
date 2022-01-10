@@ -1,8 +1,8 @@
 import React from 'react';
+import Home from './features/home/Home';
 import './App.css';
-import Home from "./components/Home";
 import { Provider } from "react-redux";
-import { store } from "./redux/store";
+import { store } from "./app/store";
 
 
 const App = () => {
